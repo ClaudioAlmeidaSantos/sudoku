@@ -47,8 +47,8 @@ int main (){
     //jogo
     int loop = 1;
     int comando,a,b,c;
+    print_matriz(sudoku);
     while (loop == 1){
-        print_matriz(sudoku);
 
         printf("\n<== Comandos ==>");
         printf("\n 1- Imprimir Tabela\n 2- Alterar Valor da Tabela\n 3- Checar Tabela\n 4- Desistir\n");
