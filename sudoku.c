@@ -68,7 +68,7 @@ int main (){
     int sudoku[9][9];
     int dificuldade;
     printf("Nivel do jogo: 1- Facil, 2-Media, 3- Dificil");
-    scanf("%i,&dificuldade")
+    scanf("%i",&dificuldade);
     switch (dificuldade)
     {
     case 1:
@@ -94,10 +94,34 @@ int main (){
     int comando,a,b,c;
     while (loop == 1){
         print_matriz(sudoku);
-        printf("coordenada para ser alterada: "); scanf("%i % i",&a,&b);
-        printf("Valor: "); scanf("%i",&c);
+
+        printf("\n<== Comandos ==>");
+        printf("1- Imprimir Tabela\n 2- Alterar Valor da Tabela\n 3- Checar Tabela\n 4- Desistir");
+        scanf("%i", &comando);
+        switch (comando)
+        {
+        case 1:
+            print_matriz(sudoku);
+            break;
+        case 2:
+            printf("\nCoordenada: ");
+            scanf("%i %i", &a, &b);
+            printf("\nValor: ");
+            scanf("%i",&c);
+            sudoku[a-1][b-1] = c;
+            break;
+        case 3:
+           //Rodar Função de checar tabela
+            break;
+        case 4:
+            printf("\n\t ff" );
+            return 0;
+            break;
         
-        
+        default:
+            printf("Valor Invalido");
+            break;
+        }
         
     }
     
