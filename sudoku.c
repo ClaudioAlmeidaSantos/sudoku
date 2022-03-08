@@ -9,7 +9,7 @@ void print_matriz(int matriz[9][9]){
     }
 
     printf("\n  -----------------------------------------------------------------------------------------------\n");
-    
+
     for (i=0;i<9;i++){
         printf("%i |", i+1);
         for(j=0;j<9;j++){
@@ -32,6 +32,23 @@ void print_matriz(int matriz[9][9]){
     printf("\n");
 }
 
+void criarVer(int sudoku[9][9], int ver[9][9]){
+    int a, b, c;
+
+    for(a = 0; a < 9; a++){
+        for(b = 0; b < 9; b++){
+            if (sudoku[a][b] == 0){
+                ver[a][b] = 0;
+            }
+            else{
+                ver[a][b] = 1;
+            }
+        }
+    }
+}
+
+
+
 int main (){
     //matriz
     int sudoku[9][9] = {     {3, 2, 6, 3, 8, 0, 0, 4, 7},
@@ -47,9 +64,13 @@ int main (){
     //jogo
     int loop = 1;
     int comando,a,b,c;
-    while (loop == 1){
-        print_matriz(sudoku);
+    int ver[9][9];
 
+    criarVer(sudoku, ver);
+
+    print_matriz(sudoku);
+
+    while (loop == 1){
         printf("\n<== Comandos ==>");
         printf("\n 1- Imprimir Tabela\n 2- Alterar Valor da Tabela\n 3- Checar Tabela\n 4- Desistir\n");
         scanf("%i", &comando);
@@ -61,11 +82,16 @@ int main (){
         case 2:
             printf("\nCoordenada: ");
             scanf("%i %i", &a, &b);
-            //Checar se a posição n é a da tabela original!
-            printf("\nValor: ");
-            scanf("%i",&c);
-            sudoku[a-1][b-1] = c;
-            break;
+            if(ver[a-1][b-1] != 0){
+                printf("\nNao eh possivel alterar valores da tabela original!\n");
+                break;
+            }
+            else{
+                printf("\nValor: ");
+                scanf("%i",&c);
+                sudoku[a-1][b-1] = c;
+                break;
+            }
         case 3:
            //Rodar Função de checar tabela
            /*
@@ -80,14 +106,14 @@ int main (){
             printf("\n\t ff" );
             return 0;
             break;
-        
+
         default:
             printf("Valor Invalido");
             break;
         }
-        
+
     }
-    
-   
+
+
     return 0;
 }
