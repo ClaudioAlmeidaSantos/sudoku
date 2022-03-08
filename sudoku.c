@@ -4,7 +4,7 @@ void print_matriz(int matriz[9][9]){
     int i,j,a=1,b=1;
     for (i=0;i<9;i++){
         for(j=0;j<9;j++){
-            printf("\t%i",matriz[i][j]);
+            printf("(%i)",matriz[i][j]);
             if (a==3){
                 printf("|");
                 a=1;
@@ -14,7 +14,7 @@ void print_matriz(int matriz[9][9]){
         }
         printf("\n");
         if(b==3){
-            printf("\t-\t-\t-\t\t-\t-\t-\t-\t-\n");
+            printf("------------------------------\n");
             b=1;
         }else{
             b++;
