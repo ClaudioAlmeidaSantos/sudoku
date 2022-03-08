@@ -64,12 +64,12 @@ int main (){
     //jogo
     int loop = 1;
     int comando,a,b,c;
-<<<<<<< HEAD
+
     int ver[9][9];
-=======
+
     print_matriz(sudoku);
     while (loop == 1){
->>>>>>> a6a1df6a8abc085f59705e7edba214bc690889a9
+
 
     criarVer(sudoku, ver);
 
