@@ -34,60 +34,15 @@ void print_matriz(int matriz[9][9]){
 
 int main (){
     //matriz
-    int sudokuFacil[9][9] = {{0, 0, 0, 0, 0, 0, 0, 0, 0},
+    int sudoku[9][9] = {     {3, 2, 6, 3, 8, 0, 0, 4, 7},
+                             {5, 0, 0, 2, 0, 0, 0, 0, 6},
+                             {0, 0, 0, 0, 0, 7, 0, 0, 2},
+                             {0, 0, 2, 5, 0, 8, 0, 9, 4},
                              {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    int sudokuMedio[9][9] = {{0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    int sudokuDificil[9][9] = {{0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0}};
-
-
-    int sudoku[9][9];
-    int dificuldade;
-    printf("Nivel do jogo: 1- Facil, 2-Media, 3- Dificil");
-    scanf("%i",&dificuldade);
-    switch (dificuldade)
-    {
-    case 1:
-        sudoku=sudokuFacil;
-        break;
-    case 2:
-        sudoku=sudokuMedio;
-        break;
-    case 3:
-        sudoku=sudokuDificil;
-        break;
-    
-    default:
-        printf(" Valor Invalido");
-        break;
-    }
-
-
-    
+                             {6, 8, 0, 9, 0, 2, 1, 0, 0},
+                             {1, 0, 0, 4, 0, 0, 0, 0, 0},
+                             {2, 0, 0, 0, 0, 1, 0, 0, 9},
+                             {8, 6, 0, 0, 0, 9, 7, 5, 1}};
 
     //jogo
     int loop = 1;
@@ -96,7 +51,7 @@ int main (){
         print_matriz(sudoku);
 
         printf("\n<== Comandos ==>");
-        printf("1- Imprimir Tabela\n 2- Alterar Valor da Tabela\n 3- Checar Tabela\n 4- Desistir");
+        printf("\n1- Imprimir Tabela\n 2- Alterar Valor da Tabela\n 3- Checar Tabela\n 4- Desistir");
         scanf("%i", &comando);
         switch (comando)
         {
@@ -106,12 +61,20 @@ int main (){
         case 2:
             printf("\nCoordenada: ");
             scanf("%i %i", &a, &b);
+            //Checar se a posição n é a da tabela original!
             printf("\nValor: ");
             scanf("%i",&c);
             sudoku[a-1][b-1] = c;
             break;
         case 3:
            //Rodar Função de checar tabela
+           /*
+           if (checar(sudoku)==0){
+               printf("\n<=========>\nParabéns! Voce Terminou.");
+           } else if(checar(sudoku)==1){
+               printf("\n <=========>\nTem algo errado.");
+           }
+           */
             break;
         case 4:
             printf("\n\t ff" );
