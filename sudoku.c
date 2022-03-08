@@ -84,7 +84,7 @@ int main (){
             print_matriz(sudoku);
             break;
         case 2:
-            printf("\n Qual celula vc quer mudar?");
+            printf("\n Coordenada da celula vc quer mudar?");
             scanf("%i %i", &a, &b);
             printf("\n Valor:");
             scanf("%i", &c);
@@ -94,7 +94,7 @@ int main (){
             if(resultado(sudoku)==1){
                 printf("\nParabens! Vc terminou.\t:)");
             } else {
-                printf("\nAinda não acabou...\n");
+                printf("\nAinda nao acabou...\n");
             }
             break;
         default:
