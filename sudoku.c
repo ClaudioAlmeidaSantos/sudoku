@@ -104,6 +104,7 @@ int main (){
     //jogo
     int loop = 1;
     int comando,a,b,c;
+    int tentativas=0;
 
     print_matriz(sudoku);
 
@@ -133,7 +134,7 @@ int main (){
         case 3:
            //Rodar Função de checar tabela
            if (checar(sudoku)==1){
-               printf("\n<=========>\nParabéns! Voce Terminou.");
+               printf("\n<=========>\nParabéns! Voce Terminou com %i tentativas.", tentativas+1);
            } else if(checar(sudoku)==0){
                printf("\n <=========>\nTem algo errado.");
            }
@@ -147,7 +148,8 @@ int main (){
             printf("Valor Invalido");
             break;
         }
-
+        
+        tentativas = tentativas + 1;
     }
 
 
