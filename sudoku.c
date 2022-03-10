@@ -227,6 +227,7 @@ int main (){
         }
 
         tentativas = tentativas + 1;
+        sleep(3);
     }
 
 
