@@ -134,7 +134,7 @@ int main (){
            //Rodar Função de checar tabela
            if (checar(sudoku)==1){
                printf("\n<=========>\nParabéns! Voce Terminou.");
-           } else if(checar(sudoku)==2){
+           } else if(checar(sudoku)==0){
                printf("\n <=========>\nTem algo errado.");
            }
             break;
