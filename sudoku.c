@@ -48,7 +48,7 @@ int validacao(int a, int b, int matriz[9][9]){
 }
 
 int checar(int sudoku[9][9]){
-    // checa linha e coluna juntos
+     // checa linha e coluna juntos
     int i, j, k, l, a = 0, erro = 0;
     for (i = 0; i < 9; i++){
         for(j = 0; j < 9; j++){
@@ -56,6 +56,8 @@ int checar(int sudoku[9][9]){
                 if ((sudoku[i][j] == sudoku[i][k] && j != k) || (sudoku[i][j] == sudoku[k][j] && i != k))
                     return 0;
             }
+            if (sudoku [i][j] == 0)
+                return 0;
         }
     }
     
@@ -69,7 +71,7 @@ int checar(int sudoku[9][9]){
                             return 0;                        
                     }
 
-                }                
+                }            
             }
         }
         a += 3;
@@ -139,7 +141,11 @@ int main (){
             if( validacao(a,b,base)==1){
                 printf("\nValor: ");
                 scanf("%i",&c);
-                sudoku[a-1][b-1] = c;
+                if(c<10 && c>0){
+                    sudoku[a-1][b-1] = c;
+                } else{
+                    printf("\nValor Invalido!");
+                }
                 break;
             } else{
                 printf("\nValor Invalido, essa coordenada não pode ser alterada");
@@ -151,8 +157,9 @@ int main (){
            //Rodar Função de checar tabela
            if (checar(sudoku)==1){
                tempo_final = time(NULL);
-
-               printf("\n<=========>\nParabéns! Voce Terminou com %i tentativas em %i min.", tentativas+1, (tempo_final - tempo_inicial)/60);
+               limpaTela();
+               printf("\n<===================================>");
+               printf("\nParabéns! Voce Terminou com %i tentativas em %i min. \n", tentativas+1, (tempo_final - tempo_inicial)/60);
            } else if(checar(sudoku)==0){
                printf("\n <=========>\nTem algo errado.");
            }
