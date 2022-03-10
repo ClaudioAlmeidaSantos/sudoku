@@ -32,26 +32,52 @@ void print_matriz(int matriz[9][9]){
     printf("\n");
 }
 
-void criarVer(int sudoku[9][9], int ver[9][9]){
-    int a, b, c;
-
-    for(a = 0; a < 9; a++){
-        for(b = 0; b < 9; b++){
-            if (sudoku[a][b] == 0){
-                ver[a][b] = 0;
-            }
-            else{
-                ver[a][b] = 1;
-            }
-        }
+int validacao(int a, int b, int matriz[9][9]){
+    int resposta;
+    if(matriz[a][b]==0){
+        resposta = 1; // ok
+        return resposta;
+    } else{
+        resposta=0;
+        return resposta;
     }
+
 }
 
+int checar(int matriz[9][9]){
+    int resultado=1;
+    int i,j,k;
+    //checar linhas
+    for (i=0;i<9;i++){
+        for(j=0;j<9;j++){
+           for (k=0;k<9;k++){
+               if( matriz[i][j]==matriz[i][k] && j!=k){
+                   resultado = 0;
+                   return resultado;
+               }
+           }  
+        }
+    }
 
+    //checar coluna
+    for (i=0;i<9;i++){
+        for(j=0;j<9;j++){
+           for (k=0;k<9;k++){
+               if( matriz[j][i]==matriz[j][k] && i!=k){
+                   resultado = 0;
+                   return resultado;
+               }
+           }
+            
+        }
+    }
+    //checar quadrado
+    return resultado;
+}
 
 int main (){
     //matriz
-    int sudoku[9][9] = {     {3, 2, 6, 3, 8, 0, 0, 4, 7},
+    int base[9][9] = {     {3, 2, 6, 3, 8, 0, 0, 4, 7},
                              {5, 0, 0, 2, 0, 0, 0, 0, 6},
                              {0, 0, 0, 0, 0, 7, 0, 0, 2},
                              {0, 0, 2, 5, 0, 8, 0, 9, 4},
@@ -61,17 +87,17 @@ int main (){
                              {2, 0, 0, 0, 0, 1, 0, 0, 9},
                              {8, 6, 0, 0, 0, 9, 7, 5, 1}};
 
+
+    // recebendo de uma matriz base                       
+    int sudoku[9][9];
+    sudoku = base;
+
     //jogo
     int loop = 1;
     int comando,a,b,c;
 
-    int ver[9][9];
-
     print_matriz(sudoku);
     while (loop == 1){
-
-
-    criarVer(sudoku, ver);
 
     print_matriz(sudoku);
 
@@ -87,25 +113,24 @@ int main (){
         case 2:
             printf("\nCoordenada: ");
             scanf("%i %i", &a, &b);
-            if(ver[a-1][b-1] != 0){
-                printf("\nNao eh possivel alterar valores da tabela original!\n");
-                break;
-            }
-            else{
+            if( validacao(a,b,base)==1){
                 printf("\nValor: ");
                 scanf("%i",&c);
                 sudoku[a-1][b-1] = c;
                 break;
+            } else{
+                printf("\nValor Invalido, essa coordenada não pode ser alterada");
+                break;
             }
+            
+        
         case 3:
            //Rodar Função de checar tabela
-           /*
-           if (checar(sudoku)==0){
+           if (checar(sudoku)==1){
                printf("\n<=========>\nParabéns! Voce Terminou.");
-           } else if(checar(sudoku)==1){
+           } else if(checar(sudoku)==2){
                printf("\n <=========>\nTem algo errado.");
            }
-           */
             break;
         case 4:
             printf("\n\t ff" );
