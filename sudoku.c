@@ -34,6 +34,8 @@ void print_matriz(int matriz[9][9]){
 
 int validacao(int a, int b, int matriz[9][9]){
     int resposta;
+    a= a-1;
+    b=b-1;
     if(matriz[a][b]==0){
         resposta = 1; // ok
         return resposta;
@@ -77,7 +79,7 @@ int checar(int matriz[9][9]){
 
 int main (){
     //matriz
-    int base[9][9] = {     {3, 2, 6, 3, 8, 0, 0, 4, 7},
+    int base[9][9] = {       {3, 2, 6, 3, 8, 0, 0, 4, 7},
                              {5, 0, 0, 2, 0, 0, 0, 0, 6},
                              {0, 0, 0, 0, 0, 7, 0, 0, 2},
                              {0, 0, 2, 5, 0, 8, 0, 9, 4},
@@ -90,14 +92,18 @@ int main (){
 
     // recebendo de uma matriz base                       
     int sudoku[9][9];
-    sudoku = base;
+    
+    //igualando as matrizes
+    int i,j;
+    for (i=0;i<9;i++){
+        for(j=0;j<9;j++){
+            sudoku[i][j] = base[i][j];
+           }
+        }
 
     //jogo
     int loop = 1;
     int comando,a,b,c;
-
-    print_matriz(sudoku);
-    while (loop == 1){
 
     print_matriz(sudoku);
 
