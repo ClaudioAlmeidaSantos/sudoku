@@ -125,16 +125,14 @@ int main (){
     print_matriz(sudoku);
 
     while (loop == 1){
-        printf("\n<== Comandos ==>");
-        printf("\n 1- Imprimir Tabela\n 2- Alterar Valor da Tabela\n 3- Checar Tabela\n 4- Desistir\n");
+        printf("\n\t<======= Comandos =======>");
+        printf("\n 1- Alterar Valor da Tabela\n 2- Checar Tabela\n 3- Desistir\n");
         scanf("%i", &comando);
         switch (comando)
         {
-        case 1:
             limpaTela();
             print_matriz(sudoku);
-            break;
-        case 2:
+        case 1:
             printf("\nCoordenada: (linha , coluna)");
             scanf("%i %i", &a, &b);
             if( validacao(a,b,base)==1){
@@ -148,7 +146,7 @@ int main (){
             }
             
         
-        case 3:
+        case 2:
            //Rodar Função de checar tabela
            if (checar(sudoku)==1){
                tempo_final = time(NULL);
@@ -158,7 +156,7 @@ int main (){
                printf("\n <=========>\nTem algo errado.");
            }
             break;
-        case 4:
+        case 3:
             printf("\n\t ff" );
             return 0;
             break;
