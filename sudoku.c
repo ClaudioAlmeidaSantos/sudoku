@@ -135,7 +135,7 @@ int main (){
             print_matriz(sudoku);
             break;
         case 2:
-            printf("\nCoordenada: ");
+            printf("\nCoordenada: (linha , coluna)");
             scanf("%i %i", &a, &b);
             if( validacao(a,b,base)==1){
                 printf("\nValor: ");
