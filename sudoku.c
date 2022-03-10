@@ -3,6 +3,7 @@
 #include <unistd.h>
 
 void print_matriz(int matriz[9][9]){
+    printf("\n");
     int i,j,a=1,b=1;
     for (i = 1; i < 10; i++){
         if (i == 4 || i == 7)
