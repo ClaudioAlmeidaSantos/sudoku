@@ -88,7 +88,7 @@ void limpaTela(){
 
 int main (){
     //inicio do jogo
-    printf("\n*  ## ##   ##  ###  ### ##    ## ##   ##  ###  ##  ### *\n* ##   ##  ##   ##   ##  ##  ##   ##  ##  ##   ##   ## *\n* ####     ##   ##   ##  ##  ##   ##  ## ##    ##   ## *\n*  #####   ##   ##   ##  ##  ##   ##  ## ##    ##   ## *\n*     ###  ##   ##   ##  ##  ##   ##  ## ###   ##   ## *\n* ##   ##  ##   ##   ##  ##  ##   ##  ##  ##   ##   ## *\n*  ## ##    ## ##   ### ##    ## ##   ##  ###   ## ##  *\n");
+    printf("\n\t\t*  ## ##   ##  ###  ### ##    ## ##   ##  ###  ##  ### *\n\t\t* ##   ##  ##   ##   ##  ##  ##   ##  ##  ##   ##   ## *\n\t\t* ####     ##   ##   ##  ##  ##   ##  ## ##    ##   ## *\n\t\t*  #####   ##   ##   ##  ##  ##   ##  ## ##    ##   ## *\n\t\t*     ###  ##   ##   ##  ##  ##   ##  ## ###   ##   ## *\n\t\t* ##   ##  ##   ##   ##  ##  ##   ##  ##  ##   ##   ## *\n\t\t*  ## ##    ## ##   ### ##    ## ##   ##  ###   ## ##  *\n");
 
 
 
@@ -125,13 +125,14 @@ int main (){
     print_matriz(sudoku);
 
     while (loop == 1){
+        limpaTela();
+        print_matriz(sudoku);
+
         printf("\n\t<======= Comandos =======>");
         printf("\n 1- Alterar Valor da Tabela\n 2- Checar Tabela\n 3- Desistir\n");
         scanf("%i", &comando);
         switch (comando)
         {
-            limpaTela();
-            print_matriz(sudoku);
         case 1:
             printf("\nCoordenada: (linha , coluna)");
             scanf("%i %i", &a, &b);
