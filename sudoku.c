@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include <unistd.h>
 
 void print_matriz(int matriz[9][9]){
     int i,j,a=1,b=1;
@@ -90,8 +91,9 @@ void limpaTela(){
 
 int main (){
     //inicio do jogo
+    limpaTela();
     printf("\n\t\t*  ## ##   ##  ###  ### ##    ## ##   ##  ###  ##  ### *\n\t\t* ##   ##  ##   ##   ##  ##  ##   ##  ##  ##   ##   ## *\n\t\t* ####     ##   ##   ##  ##  ##   ##  ## ##    ##   ## *\n\t\t*  #####   ##   ##   ##  ##  ##   ##  ## ##    ##   ## *\n\t\t*     ###  ##   ##   ##  ##  ##   ##  ## ###   ##   ## *\n\t\t* ##   ##  ##   ##   ##  ##  ##   ##  ##  ##   ##   ## *\n\t\t*  ## ##    ## ##   ### ##    ## ##   ##  ###   ## ##  *\n");
-
+    sleep(4);
 
 
     //matriz
