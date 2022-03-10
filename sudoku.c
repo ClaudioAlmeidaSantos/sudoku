@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <time.h>
-#include <unistd.h>
 
 void print_matriz(int matriz[9][9]){
     printf("\n");
@@ -94,8 +93,7 @@ int main (){
     //inicio do jogo
     limpaTela();
     printf("\n\t\t*  ## ##   ##  ###  ### ##    ## ##   ##  ###  ##  ### *\n\t\t* ##   ##  ##   ##   ##  ##  ##   ##  ##  ##   ##   ## *\n\t\t* ####     ##   ##   ##  ##  ##   ##  ## ##    ##   ## *\n\t\t*  #####   ##   ##   ##  ##  ##   ##  ## ##    ##   ## *\n\t\t*     ###  ##   ##   ##  ##  ##   ##  ## ###   ##   ## *\n\t\t* ##   ##  ##   ##   ##  ##  ##   ##  ##  ##   ##   ## *\n\t\t*  ## ##    ## ##   ### ##    ## ##   ##  ###   ## ##  *\n");
-    sleep(4);
-
+    
 
     //matriz
     int sudokuFac[9][9] = {     {6, 0, 0, 3, 7, 5, 0, 1, 4},
@@ -227,7 +225,7 @@ int main (){
         }
 
         tentativas = tentativas + 1;
-        sleep(3);
+      
     }
 
 
