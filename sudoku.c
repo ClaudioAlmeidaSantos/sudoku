@@ -136,10 +136,10 @@ int main (){
         switch (comando)
         {
         case 1:
-            printf("\nCoordenada: (linha , coluna)");
+            printf("\nCoordenada  linha , coluna: ");
             scanf("%i %i", &a, &b);
             if( validacao(a,b,base)==1){
-                printf("\nValor: ");
+                printf("Valor: ");
                 scanf("%i",&c);
                 if(c<10 && c>0){
                     sudoku[a-1][b-1] = c;
