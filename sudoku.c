@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 
 void print_matriz(int matriz[9][9]){
     int i,j,a=1,b=1;
@@ -46,38 +47,51 @@ int validacao(int a, int b, int matriz[9][9]){
 
 }
 
-int checar(int matriz[9][9]){
-    int resultado=1;
-    int i,j,k;
-    //checar linhas
-    for (i=0;i<9;i++){
-        for(j=0;j<9;j++){
-           for (k=0;k<9;k++){
-               if( matriz[i][j]==matriz[i][k] && j!=k){
-                   resultado = 0;
-                   return resultado;
-               }
-           }  
+int checar(int sudoku[9][9]){
+    // checa linha e coluna juntos
+    int i, j, k, l, a = 0, erro = 0;
+    for (i = 0; i < 9; i++){
+        for(j = 0; j < 9; j++){
+            for (k = 0; k < 9; k++){
+                if ((sudoku[i][j] == sudoku[i][k] && j != k) || (sudoku[i][j] == sudoku[k][j] && i != k))
+                    return 0;
+            }
         }
     }
+    
+    // checa cada quadrado
+    while (a < 9) {
+        for (i = a; i < 3+a; i++){
+            for (j = a; j < 3+a; j++){
+                for (k = a; k < 3+a; k++){
+                    for (l = a; l < 3+a; l++){
+                        if ((sudoku[i][j] == sudoku[k][l] && i != k && j != l))
+                            return 0;                        
+                    }
 
-    //checar coluna
-    for (i=0;i<9;i++){
-        for(j=0;j<9;j++){
-           for (k=0;k<9;k++){
-               if( matriz[j][i]==matriz[j][k] && i!=k){
-                   resultado = 0;
-                   return resultado;
-               }
-           }
-            
+                }                
+            }
         }
+        a += 3;
     }
-    //checar quadrado
-    return resultado;
+    return 1;
+}
+
+//função de limpar tela do monitor
+void limpaTela(){
+     #if defined(_WIN32) || defined(_WIN64)
+        system("cls");
+    #elif defined(__linux__) || defined(__unix__)
+        system("clear");
+    #endif
 }
 
 int main (){
+    //inicio do jogo
+
+
+
+
     //matriz
     int base[9][9] = {       {6, 0, 0, 3, 7, 5, 0, 1, 4},
                              {0, 4, 0, 0, 0, 0, 0, 7, 3},
@@ -105,7 +119,9 @@ int main (){
     int loop = 1;
     int comando,a,b,c;
     int tentativas=0;
-
+    //contagem de tempo
+    int tempo_inicial,tempo_final;
+    tempo_inicial = time(NULL);
     print_matriz(sudoku);
 
     while (loop == 1){
@@ -134,7 +150,9 @@ int main (){
         case 3:
            //Rodar Função de checar tabela
            if (checar(sudoku)==1){
-               printf("\n<=========>\nParabéns! Voce Terminou com %i tentativas.", tentativas+1);
+               tempo_final = time(NULL);
+
+               printf("\n<=========>\nParabéns! Voce Terminou com %i tentativas em %i min.", tentativas+1, (tempo_final - tempo_inicial)/60);
            } else if(checar(sudoku)==0){
                printf("\n <=========>\nTem algo errado.");
            }
@@ -148,7 +166,7 @@ int main (){
             printf("Valor Invalido");
             break;
         }
-        
+
         tentativas = tentativas + 1;
     }
 
