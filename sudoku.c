@@ -134,37 +134,43 @@ int main (void){
 
     //igualando as matrizes
     int dif;
-    printf("\nDificuldade do jogo:\n1 - Facil\n2 - Medio\n3 - Dificil\n");
-    scanf("%d", &dif);
+    while (1){
+        printf("\nDificuldade do jogo:\n1 - Facil\n2 - Medio\n3 - Dificil\n4 - Sair\n");
+        scanf("%d", &dif);
 
-    if (dif == 1){
-        for (i=0;i<9;i++){
-            for(j=0;j<9;j++){
-                sudoku[i][j] = sudokuFac[i][j];
-                base[i][j] = sudokuFac[i][j];
-               }
-            }
-    }
-
-    else if (dif == 2){
-        for (i=0;i<9;i++){
-            for(j=0;j<9;j++){
-                sudoku[i][j] = sudokuMed[i][j];
-                base[i][j] = sudokuMed[i][j];
-               }
-            }
-    }
-
-    else if(dif == 3){
-        for (i=0;i<9;i++){
-            for(j=0;j<9;j++){
-                sudoku[i][j] = sudokuDif[i][j];
-                base[i][j] = sudokuDif[i][j];
-               }
-            }
-    } else {
-        printf("\n Valor invalido");
-        return 0;
+        switch(dif){
+            case 1:
+                for (i=0;i<9;i++){
+                    for(j=0;j<9;j++){
+                        sudoku[i][j] = sudokuFac[i][j];
+                        base[i][j] = sudokuFac[i][j];
+                    }
+                }
+                break;
+            case 2:
+                for (i=0;i<9;i++){
+                    for(j=0;j<9;j++){
+                        sudoku[i][j] = sudokuMed[i][j];
+                        base[i][j] = sudokuMed[i][j];
+                    }
+                }
+                break;
+            case 3:
+                for (i=0;i<9;i++){
+                    for(j=0;j<9;j++){
+                        sudoku[i][j] = sudokuDif[i][j];
+                        base[i][j] = sudokuDif[i][j];
+                    }
+                }
+                break;
+            case 4:
+                printf("Programa encerrado!\n");        
+                return 0;
+        }
+        if (dif < 1 || dif > 4)
+            printf("\nValor invalido\n");
+        else
+            break;
     }
     
     //jogo
@@ -210,12 +216,13 @@ int main (void){
                limpaTela();
                printf("\n<===================================>");
                printf("\nParabéns! Voce Terminou com %i tentativas em %i min. \n", tentativas+1, (tempo_final - tempo_inicial)/60);
+               return 0;
            } else if(checar(sudoku)==0){
                printf("\n <=========>\nTem algo errado.");
            }
             break;
         case 3:
-            printf("\n\t ff" );
+            printf("\n\t Game Over" );
             return 0;
             break;
 
