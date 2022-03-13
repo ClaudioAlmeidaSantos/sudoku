@@ -233,7 +233,7 @@ int main (void){
                tempo_final = time(NULL);
                limpaTela();
                printf("\n<===================================>");
-               printf("\nParabéns! Voce Terminou com %i tentativas em %i min. \n", tentativas+1, (tempo_final - tempo_inicial)/60);
+               printf("\nParabéns! Voce Terminou com %i tentativas em %i minuto(s) e %i segundo(s). \n", tentativas+1, (tempo_final - tempo_inicial)/60, (tempo_final - tempo_inicial)%60);
                return 0;
            } else if(checar(sudoku)==0){
                printf("\n <=========>\nTem algo errado.");
