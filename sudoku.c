@@ -36,16 +36,12 @@ void print_matriz(int matriz[9][9]){
 
 int validacao(int a, int b, int matriz[9][9]){
     int resposta;
-    a= a-1;
-    b=b-1;
-    if(matriz[a][b]==0){
-        resposta = 1; // ok
-        return resposta;
-    } else{
-        resposta=0;
-        return resposta;
-    }
-
+    a--;
+    b--;
+    if(matriz[a][b]==0)
+        return 1;   // ok
+    else
+        return 0;
 }
 
 int checar(int sudoku[9][9]){
@@ -91,9 +87,6 @@ void limpaTela(){
 
 int main (void){
     //inicio do jogo
-    limpaTela();
-    printf("\n\t\t*  ## ##   ##  ###  ### ##    ## ##   ##  ###  ##  ### *\n\t\t* ##   ##  ##   ##   ##  ##  ##   ##  ##  ##   ##   ## *\n\t\t* ####     ##   ##   ##  ##  ##   ##  ## ##    ##   ## *\n\t\t*  #####   ##   ##   ##  ##  ##   ##  ## ##    ##   ## *\n\t\t*     ###  ##   ##   ##  ##  ##   ##  ## ###   ##   ## *\n\t\t* ##   ##  ##   ##   ##  ##  ##   ##  ##  ##   ##   ## *\n\t\t*  ## ##    ## ##   ### ##    ## ##   ##  ###   ## ##  *\n");
-    
 
     //matriz
     int sudokuFac[9][9] = {     {6, 0, 0, 3, 7, 5, 0, 1, 4},
@@ -126,16 +119,22 @@ int main (void){
                                 {0, 6, 0, 0, 0, 0, 0, 0, 0},
                                 {0, 0, 0, 1, 4, 7, 0, 0, 0},
                                 {0, 1, 4, 8, 3, 6, 0, 0, 5}};
-
+    
     // recebendo de uma matriz base
     int sudoku[9][9];
     int base[9][9];
     int i,j;
+    int erro;
 
     //igualando as matrizes
     int dif;
     while (1){
+        limpaTela();
+        printf("\n\t\t*  ## ##   ##  ###  ### ##    ## ##   ##  ###  ##  ### *\n\t\t* ##   ##  ##   ##   ##  ##  ##   ##  ##  ##   ##   ## *\n\t\t* ####     ##   ##   ##  ##  ##   ##  ## ##    ##   ## *\n\t\t*  #####   ##   ##   ##  ##  ##   ##  ## ##    ##   ## *\n\t\t*     ###  ##   ##   ##  ##  ##   ##  ## ###   ##   ## *\n\t\t* ##   ##  ##   ##   ##  ##  ##   ##  ##  ##   ##   ## *\n\t\t*  ## ##    ## ##   ### ##    ## ##   ##  ###   ## ##  *\n");
         printf("\nDificuldade do jogo:\n1 - Facil\n2 - Medio\n3 - Dificil\n4 - Sair\n");
+        if (erro == 1)
+            printf("\nValor invalido! Por favor, tente novamente\n");
+        erro = 0;
         scanf("%d", &dif);
 
         switch(dif){
@@ -168,45 +167,56 @@ int main (void){
                 return 0;
         }
         if (dif < 1 || dif > 4)
-            printf("\nValor invalido\n");
+            erro = 1;   
         else
             break;
     }
     
+
     //jogo
     int loop = 1;
     int comando,a,b,c;
     int tentativas=0;
+    
     //contagem de tempo
     int tempo_inicial,tempo_final;
     tempo_inicial = time(NULL);
     print_matriz(sudoku);
 
-    while (loop == 1){
-        limpaTela();
-        print_matriz(sudoku);
+    int checa = 0;
 
+    while (loop == 1){
+        limpaTela();        
+        if (checa == 1)
+            printf("\n<=========>\nTem algo errado.");
+
+        print_matriz(sudoku);
         printf("\n\t<======= Comandos =======>");
         printf("\n 1- Alterar Valor da Tabela\n 2- Checar Tabela\n 3- Desistir\n");
-        scanf("%i", &comando);
+        if (erro == 1)
+            printf("\nValor Invalido! Por favor, tente novamente\n");
+
+        erro = 0;
+        checa = 0;
+        scanf("%i", &comando);        
+
         switch (comando)
         {
         case 1:
             printf("\nCoordenada  linha , coluna: ");
             scanf("%i %i", &a, &b);
-            if( validacao(a,b,base)==1){
+            if(validacao(a,b,base)==1 && (a > 0 && a < 10) && (b > 0 && b < 10)){
                 printf("Valor: ");
                 scanf("%i",&c);
                 if(c<10 && c>0){
                     sudoku[a-1][b-1] = c;
-                } else{
-                    printf("\nValor Invalido!");
                 }
-                break;
-            } else{
-                printf("\nValor Invalido, essa coordenada não pode ser alterada");
-                break;
-            }
+                else
+                    erro = 1;
+            } 
+            else
+                erro = 1;
+            break;
             
         
         case 2:
@@ -215,24 +225,21 @@ int main (void){
                tempo_final = time(NULL);
                limpaTela();
                printf("\n<===================================>");
-               printf("\nParabéns! Voce Terminou com %i tentativas em %i min. \n", tentativas+1, (tempo_final - tempo_inicial)/60);
+               printf("\nParabéns! Voce Terminou com %i tentativas em %i minuto(s) e %i segundo(s). \n", tentativas+1, (tempo_final - tempo_inicial)/60, (tempo_final - tempo_inicial)%60);
                return 0;
            } else if(checar(sudoku)==0){
-               printf("\n <=========>\nTem algo errado.");
+               checa = 1;
            }
             break;
         case 3:
-            printf("\n\t Game Over" );
+            printf("\n\t Game Over\n" );
             return 0;
-            break;
 
         default:
-            printf("Valor Invalido");
+            erro = 1;
             break;
         }
-
-        tentativas = tentativas + 1;
-      
+        tentativas++;
     }
 
 
